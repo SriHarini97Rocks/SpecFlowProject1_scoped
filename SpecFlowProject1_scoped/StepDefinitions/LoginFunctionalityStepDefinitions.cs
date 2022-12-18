@@ -15,13 +15,13 @@ namespace SpecFlowProject1_scoped.StepDefinitions
         _scenarioContext= context;
             _driver=_scenarioContext.Get<IWebDriver>("driver");
         }
-        [Scope(Tag = "smoke")]
+       
         [Given(@"the login url of the phptravels site")]
         public void GivenTheLoginUrlOfThePhptravelsSite()
         {
             _driver.Url = "https://phptravels.org/login";
         }
-        [Scope(Tag = "smoke")]
+      
         [Then(@"the valid username and password is entered")]
         public void ThenTheValidUsernameAndPasswordIsEntered()
         {
@@ -29,7 +29,7 @@ namespace SpecFlowProject1_scoped.StepDefinitions
             _driver.FindElement(By.Id("inputPassword")).SendKeys("seGe4g5erihn");
             Thread.Sleep(15000);
         }
-        [Scope(Tag = "smoke")]
+       
         [Then(@"clicked on login button")]
         public void ThenClickedOnLoginButton()
         {
