@@ -75,9 +75,11 @@ namespace SpecFlowProject1_scoped.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Checking the server status of the site")]
+        [NUnit.Framework.CategoryAttribute("smoke")]
         public virtual void CheckingTheServerStatusOfTheSite()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "smoke"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checking the server status of the site", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7

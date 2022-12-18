@@ -3,7 +3,7 @@ Feature: ServerStatusFunctionality
 
 A short summary of the feature
 
-
+@smoke
 Scenario: Checking the server status of the site
 	Given the login url of the phptravels site
 	Then the valid username and password is entered
