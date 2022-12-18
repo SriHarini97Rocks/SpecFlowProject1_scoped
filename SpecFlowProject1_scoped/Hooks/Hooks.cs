@@ -36,7 +36,8 @@ namespace SpecFlowProject1_scoped.Hooks
             var driver = _context.Get<IWebDriver>("driver");
             if(driver is ITakesScreenshot screenshot)
             {
-                string filePath = _context.StepContext.StepInfo.Text+".png";
+                string workingDirectory = Environment.CurrentDirectory;
+                string filePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\"+_context.StepContext.StepInfo.Text+".png";
                 screenshot.GetScreenshot().SaveAsFile(filePath);
                 _specFlowOutputHelper.AddAttachment(filePath);
             }

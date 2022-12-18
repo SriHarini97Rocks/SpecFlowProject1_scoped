@@ -10,17 +10,15 @@ namespace SpecFlowProject1_scoped.StepDefinitions
     [Binding]
     public class LoginFunctionalityStepDefinitions
     {
-        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
 
         private readonly IWebDriver _driver;
         private WebDriverWait wait = null;
         private readonly ScenarioContext _scenarioContext;
-        public LoginFunctionalityStepDefinitions(ScenarioContext context, ISpecFlowOutputHelper outputHelper) {
+        public LoginFunctionalityStepDefinitions(ScenarioContext context) {
         
         _scenarioContext= context;
             _driver=_scenarioContext.Get<IWebDriver>("driver");
             wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
-            _specFlowOutputHelper = outputHelper;
         }
         [Scope(Tag = "smoke")]
         [Given(@"the login url of the ecommnerce site")]
