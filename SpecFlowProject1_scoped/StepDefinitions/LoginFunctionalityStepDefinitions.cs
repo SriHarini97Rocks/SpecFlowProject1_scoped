@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,11 +10,13 @@ namespace SpecFlowProject1_scoped.StepDefinitions
     public class LoginFunctionalityStepDefinitions
     {
         private readonly IWebDriver _driver;
+        private WebDriverWait wait = null;
         private readonly ScenarioContext _scenarioContext;
         public LoginFunctionalityStepDefinitions(ScenarioContext context) {
         
         _scenarioContext= context;
             _driver=_scenarioContext.Get<IWebDriver>("driver");
+            wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
         }
         [Scope(Tag = "smoke")]
         [Given(@"the login url of the ecommnerce site")]
@@ -43,5 +46,23 @@ namespace SpecFlowProject1_scoped.StepDefinitions
             var title = _driver.Title;
             Assert.AreEqual(title, "Let's Shop");
         }
+        [Then(@"the invalid username and password is entered")]
+        public void ThenTheInvalidUsernameAndPasswordIsEntered()
+        {
+            _driver.FindElement(By.Id("userEmail")).SendKeys("lastfirs1t@gmail.com");
+            _driver.FindElement(By.Id("userPassword")).SendKeys("nE4vyaW3P@m@PwJ");
+        }
+
+        [Then(@"the toaster alert should be displayed")]
+        public void ThenTheToasterAlertShouldBeDisplayed()
+        {
+            Func<IWebDriver, IWebElement> func = new Func<IWebDriver, IWebElement>((IWebDriver driver) =>
+            {
+                return _driver.FindElement(By.XPath("//div[@role='alertdialog']"));
+            });
+            IWebElement targetEle = wait.Until(func);
+            Assert.AreEqual(targetEle.Text, "Incorrect email or password.");
+        }
+
     }
 }
