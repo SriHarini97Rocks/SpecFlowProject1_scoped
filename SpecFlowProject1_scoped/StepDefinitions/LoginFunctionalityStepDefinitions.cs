@@ -3,20 +3,24 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace SpecFlowProject1_scoped.StepDefinitions
 {
     [Binding]
     public class LoginFunctionalityStepDefinitions
     {
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
+
         private readonly IWebDriver _driver;
         private WebDriverWait wait = null;
         private readonly ScenarioContext _scenarioContext;
-        public LoginFunctionalityStepDefinitions(ScenarioContext context) {
+        public LoginFunctionalityStepDefinitions(ScenarioContext context, ISpecFlowOutputHelper outputHelper) {
         
         _scenarioContext= context;
             _driver=_scenarioContext.Get<IWebDriver>("driver");
             wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            _specFlowOutputHelper = outputHelper;
         }
         [Scope(Tag = "smoke")]
         [Given(@"the login url of the ecommnerce site")]
