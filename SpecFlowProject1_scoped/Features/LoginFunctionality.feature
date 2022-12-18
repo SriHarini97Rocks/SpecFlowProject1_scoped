@@ -8,7 +8,7 @@ Link to a feature: [Calculator](SpecFlowProject1_scoped/Features/Calculator.feat
 
 @smoke
 Scenario: Check the valid login functionality of the site
-	Given the login url of the phptravels site
+	Given the login url of the ecommnerce site
 	Then the valid username and password is entered
 	And clicked on login button
-	Then the page should be redirected to clientarea page
+	Then the page should be redirected to dashboard page

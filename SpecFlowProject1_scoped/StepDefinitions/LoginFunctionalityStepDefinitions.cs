@@ -16,18 +16,19 @@ namespace SpecFlowProject1_scoped.StepDefinitions
             _driver=_scenarioContext.Get<IWebDriver>("driver");
         }
         [Scope(Tag = "smoke")]
-        [Given(@"the login url of the phptravels site")]
-        public void GivenTheLoginUrlOfThePhptravelsSite()
+        [Given(@"the login url of the ecommnerce site")]
+        public void GivenTheLoginUrlOfTheEcommnerceSite()
         {
-            _driver.Url = "https://phptravels.org/login";
-        }
+            _driver.Url = "https://rahulshettyacademy.com/client";
+        }     
+
+        
         [Scope(Tag = "smoke")]
         [Then(@"the valid username and password is entered")]
         public void ThenTheValidUsernameAndPasswordIsEntered()
         {
-            _driver.FindElement(By.Id("inputEmail")).SendKeys("firstnameslastnames@gmail.com");
-            _driver.FindElement(By.Id("inputPassword")).SendKeys("seGe4g5erihn");
-            Thread.Sleep(15000);
+            _driver.FindElement(By.Id("userEmail")).SendKeys("lastfirst@gmail.com");
+            _driver.FindElement(By.Id("userPassword")).SendKeys("nE4vyaW3P@m@PwJ");
         }
         [Scope(Tag = "smoke")]
         [Then(@"clicked on login button")]
@@ -36,11 +37,11 @@ namespace SpecFlowProject1_scoped.StepDefinitions
             _driver.FindElement(By.Id("login")).Click();
         }
 
-        [Then(@"the page should be redirected to clientarea page")]
-        public void ThenThePageShouldBeRedirectedToClientareaPage()
+        [Then(@"the page should be redirected to dashboard page")]
+        public void ThenThePageShouldBeRedirectedToDashboardPage()
         {
             var title = _driver.Title;
-            Assert.AreEqual(title, "Client Area - PHPTRAVELS");
+            Assert.AreEqual(title, "Let's Shop");
         }
     }
 }
